@@ -7,7 +7,7 @@ public class NumbersInArray {
 	public static int[] a = new int[9];
 
 	// Initialized array by random
-	public void initArray() {
+	public static void initArray() {
 		Random random = new Random();
 		for (int i = 0; i < a.length; i++) {
 			a[i] = random.nextInt(100);
@@ -17,7 +17,7 @@ public class NumbersInArray {
 	}
 
 	// Sorting array
-	public void sortArray() {
+	public static void sortArray() {
 		for (int i = 0; i < a.length; i++) {
 			for (int j = i + 1; j < a.length; j++) {
 				if (a[j] < a[i]) {
@@ -32,44 +32,40 @@ public class NumbersInArray {
 
 	// version-1 non-optimal
 	// Find 2 numbers in Array which sum are equal k
-	public void findNumber(int[] a, int k) {
+	public static boolean findNumber(int[] a, int k) {
 		System.out.println();
 		for (int i = 0; i < a.length; i++) {
 			for (int j = i + 1; j < a.length; j++) {
 				if ((a[i] + a[j]) == k) {
-					System.out.println(a[i] + " ," + a[j]);
+					return true;
 				}
 
 			}
 
 		}
-		System.out.print("In array are not numbers wich sum are equal given k");
+		return false;
 	}
 
 	// version-2 optimal
 	// Find 2 numbers in Array which sum are equal k
-	public void findNumber2(int[] a, int k) {
+	public static boolean findNumber2(int[] a, int k) {
 		System.out.println();
 		int i = 0;
 		int j = a.length - 1;
-		while ((a[i] + a[j]) < k) {
+		while (i<j && (a[i] + a[j]) < k) {
 			i++;
 		}
-		while ((a[i] + a[j]) > k) {
+		while (j<i &&(a[i] + a[j]) > k) {
 			j--;
 		}
-		if ((a[i] + a[j]) == k) {
-			System.out.println(a[i] + " ," + a[j]);
-		} else
-			System.out.print("In array are not numbers wich sum are equal given k");
+		return ((a[i] + a[j]) == k);
 	}
 
 	public static void main(String[] args) {
-		NumbersInArray find = new NumbersInArray();
-		find.initArray();
-		find.sortArray();
-		// find.findNumber(a,46);
-		find.findNumber2(a, 35);
+		initArray();
+		sortArray();
+		//find.findNumber(a,46);
+		findNumber2(a,38);
 
 	}
 }
